@@ -16,7 +16,7 @@ const LogIn: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError(""); // Clear previous errors
+    setError("");
 
     const user = {
       heightEmail: email,
@@ -30,7 +30,6 @@ const LogIn: React.FC = () => {
 
       if (response.status === 200) {
         alert("Login successful!");
-        // Pass user data to SubmitHeight page
         navigate("/submit-height", { state: { user: response.data } });
       } else {
         setError("Login failed. Please try again.");

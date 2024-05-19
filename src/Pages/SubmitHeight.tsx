@@ -11,13 +11,13 @@ const SubmitHeight: React.FC = () => {
   const user = location.state?.user;
 
   if (!user) {
-    navigate("/login"); // Redirect to login if user data is not available
+    navigate("/login");
     return null;
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError(""); // Clear previous errors
+    setError("");
 
     try {
       const response = await apiClient.post("/heights", null, {
@@ -36,7 +36,7 @@ const SubmitHeight: React.FC = () => {
       const response = await apiClient.delete(`/delete/${user.id}`);
       console.log("Response data:", response.data);
       alert("Data deleted successfully!");
-      navigate("/home"); // Redirect to home after deletion
+      navigate("/home");
     } catch (error: unknown) {
       setError("An error occurred. Please try again.");
       console.error("Delete data error:", error);
