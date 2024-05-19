@@ -65,12 +65,7 @@ const NavBar = () => {
       <NavbarContent justify="end" className="sm:hidden">
         <Dropdown>
           <DropdownTrigger>
-            <Button
-              href="#"
-              variant="flat"
-              color="success"
-              startContent={<FaUser />}
-            >
+            <Button href="#" variant="flat" color="success">
               <FaUser />
             </Button>
           </DropdownTrigger>
