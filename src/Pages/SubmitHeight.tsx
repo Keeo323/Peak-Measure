@@ -1,52 +1,71 @@
 import { Button, Input } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import apiClient from "../services/api-endpoints";
 
-const LogIn = () => {
-  // const [username, setUsername] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [height, setHeight] = useState("");
+const SubmitHeight: React.FC = () => {
+  const [height, setHeight] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const user = location.state?.user;
 
-  // const user = {
-  //   heightName: username,
-  //   heightEmail: email,
-  //   height: height,
-  //   password: password,
-  // };
+  if (!user) {
+    navigate("/login"); // Redirect to login if user data is not available
+    return null;
+  }
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setError(""); // Clear previous errors
+
+    try {
+      const response = await apiClient.post("/heights", null, {
+        params: { id: user.id, height: parseFloat(height) },
+      });
+      console.log("Response data:", response.data);
+      alert("Height submitted successfully!");
+    } catch (error: any) {
+      setError("An error occurred. Please try again.");
+      console.error("Submit height error:", error);
+    }
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <form className="bg-default-100 p-6 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Log In</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-default-100 p-6 rounded-lg shadow-md w-full max-w-md"
+      >
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          Enter Your Height
+        </h2>
+        {error && <div className="text-red-500 mb-4">{error}</div>}
         <div className="mb-4">
           <Input
-            isRequired
+            readOnly
             type="email"
             label="Email"
-            placeholder="Enter your email"
+            value={user.heightEmail}
             className="max-w-xs"
           />
         </div>
         <div className="mb-6">
           <Input
-            type="text"
-            label="Username"
-            placeholder="Enter your username"
+            required
+            label="Height (m)"
+            placeholder="Enter your height in meters. Example: 1.6"
             fullWidth
-            //value={height}
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
           />
         </div>
-        <div className="flex justify-between">
-          <Link to="/signup">
-            <Button color="primary">Sign up</Button>
-          </Link>
-          <Button type="submit" color="primary">
-            Log in
-          </Button>
-        </div>
+        <Button type="submit" color="primary">
+          Submit
+        </Button>
       </form>
     </div>
   );
 };
 
-export default LogIn;
+export default SubmitHeight;
