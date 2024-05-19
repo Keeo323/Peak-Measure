@@ -1,17 +1,27 @@
 import { Card, CardHeader, CardFooter, Image, Button } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import PeakMeasureLogo from "../assets/PeakMeasureLogo.webp";
+import HomeBanner from "../assets/homebanner.jpeg";
 
 const BenefitsOfHeight = () => {
   return (
     <div className="pt-20 px-8">
-      <h1 className="text-3xl font-bold text-center mb-6 text-white">
-        Welcome to Peak Measure
-      </h1>
-      <p className="text-center text-lg text-white mb-12">
-        At Peak Measure, we have unlocked the secret to life - knowing your
-        height.
-      </p>
+      <div className="relative mb-8">
+        <Image
+          isBlurred
+          src={HomeBanner}
+          alt="Home Banner"
+          className="w-full h-96 object-cover rounded-lg shadow-lg"
+        />
+        <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-70 rounded-lg">
+          <h1 className="text-4xl font-bold text-white mb-4 text-center z-10">
+            Welcome to Peak Measure
+          </h1>
+          <p className="text-lg text-white text-center z-10">
+            Elevate your health awareness.
+          </p>
+        </div>
+      </div>
       <div className="max-w-[900px] gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-auto mb-12">
         {[
           {
@@ -75,8 +85,8 @@ const BenefitsOfHeight = () => {
               <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100 w-full flex justify-between items-center p-4">
                 <div className="flex flex-grow gap-2 items-center">
                   <Image
-                    alt="Breathing app icon"
-                    className="rounded-full w-20 h-10 bg-black"
+                    alt="Peak Measure Logo"
+                    className="rounded-full w-20 h-8 bg-black"
                     src={PeakMeasureLogo}
                   />
                   <div className="flex flex-col">
@@ -87,7 +97,7 @@ const BenefitsOfHeight = () => {
                   </div>
                 </div>
                 <Link to="/signup">
-                  <Button radius="full" size="sm">
+                  <Button color="primary" size="sm">
                     Sign-Up
                   </Button>
                 </Link>

@@ -25,9 +25,21 @@ const SubmitHeight: React.FC = () => {
       });
       console.log("Response data:", response.data);
       alert("Height submitted successfully!");
-    } catch (error: any) {
+    } catch (error: unknown) {
       setError("An error occurred. Please try again.");
       console.error("Submit height error:", error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await apiClient.delete(`/delete/${user.id}`);
+      console.log("Response data:", response.data);
+      alert("Data deleted successfully!");
+      navigate("/home"); // Redirect to home after deletion
+    } catch (error: unknown) {
+      setError("An error occurred. Please try again.");
+      console.error("Delete data error:", error);
     }
   };
 
@@ -60,9 +72,14 @@ const SubmitHeight: React.FC = () => {
             onChange={(e) => setHeight(e.target.value)}
           />
         </div>
-        <Button type="submit" color="primary">
-          Submit
-        </Button>
+        <div className="flex justify-between">
+          <Button type="submit" color="primary">
+            Submit
+          </Button>
+          <Button type="button" color="danger" onClick={handleDelete}>
+            Delete
+          </Button>
+        </div>
       </form>
     </div>
   );
