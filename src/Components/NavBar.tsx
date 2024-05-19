@@ -65,11 +65,23 @@ const NavBar = () => {
       <NavbarContent justify="end" className="sm:hidden">
         <Dropdown>
           <DropdownTrigger>
-            <Button href="#" variant="flat" color="success">
+            <Button
+              href="#"
+              variant="light"
+              color="success"
+              disableRipple
+              radius="sm"
+            >
               <FaUser />
             </Button>
           </DropdownTrigger>
-          <DropdownMenu aria-label="User actions">
+          <DropdownMenu
+            aria-label="User actions"
+            className="w-[340px]"
+            itemClasses={{
+              base: "gap-4",
+            }}
+          >
             <DropdownItem key="login">
               <Link to="/login">Log In</Link>
             </DropdownItem>
