@@ -19,7 +19,7 @@ const NavBar = () => {
       <NavbarContent className="flex items-center gap-2 navbar-content">
         <NavbarBrand>
           <Link to="/" className="flex items-center gap-2">
-            <div className="bg-white p-2 rounded-full shadow-md flex items-center justify-center h-10 w-10">
+            <div className="bg-black p-1 rounded-full shadow-md flex items-center justify-center h-10 w-10">
               <img
                 src={PMLogo}
                 alt="Peak Measure Logo"
