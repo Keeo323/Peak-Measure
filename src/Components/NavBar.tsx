@@ -77,16 +77,23 @@ const NavBar = () => {
           </DropdownTrigger>
           <DropdownMenu
             aria-label="User actions"
-            className="w-[340px]"
+            className="w-[200px]"
             itemClasses={{
               base: "gap-4",
             }}
           >
-            <DropdownItem key="login">
-              <Link to="/login">Log In</Link>
+            <DropdownItem
+              key="login"
+              className="hover:bg-gray-700 p-2 rounded-md"
+            >
+              <Link to="/login" className="text-grey w-full block">
+                Log In
+              </Link>
             </DropdownItem>
-            <DropdownItem key="signup">
-              <Link to="/signup">Sign Up</Link>
+            <DropdownItem key="signup" className="hover:bg-gray-700 p-2">
+              <Link to="/signup" className="text-grey w-full block">
+                Sign Up
+              </Link>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
