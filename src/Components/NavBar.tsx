@@ -84,12 +84,16 @@ const NavBar = () => {
           >
             <DropdownItem key="login">
               <Link to="/login" className="text-grey w-full block">
-                Log In
+                <Button href="#" variant="light" fullWidth>
+                  Log In
+                </Button>
               </Link>
             </DropdownItem>
             <DropdownItem key="signup">
               <Link to="/signup" className="text-grey w-full block">
-                Sign Up
+                <Button href="#" variant="light" fullWidth>
+                  Sign Up
+                </Button>
               </Link>
             </DropdownItem>
           </DropdownMenu>
