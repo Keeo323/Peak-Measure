@@ -6,34 +6,36 @@ import {
   Button,
 } from "@nextui-org/react";
 import { FaUser } from "react-icons/fa";
-import PeakMeasureLogo from "../assets/PeakMeasureLogo.webp";
 import { Link } from "react-router-dom";
+import PMLogo from "../assets/PeakMeasureLogo.webp"; // Ensure this path is correct
 
 const NavBar = () => {
   return (
-    <Navbar position="static" isBordered className="bg-black">
-      <NavbarContent justify="end">
+    <Navbar isBordered className="bg-black fixed top-0 left-0 right-0 z-50">
+      <NavbarContent className="flex items-center gap-2">
         <NavbarBrand>
           <Link to="/" className="flex items-center gap-2">
-            <div className="bg-white p-2 rounded-full shadow-md">
+            <div className="flex items-center justify-center h-10 w-10">
               <img
-                src={PeakMeasureLogo}
+                src={PMLogo}
                 alt="Peak Measure Logo"
-                className="h-8 w-8 rounded-full"
+                className="h-full w-full object-contain"
               />
             </div>
-            <p className="font-bold text-inherit">PEAK MEASURE</p>
+            <span className="text-white text-xl font-semibold">
+              Peak Measure
+            </span>
           </Link>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="flex-grow" />
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className="flex gap-2 items-center">
         <NavbarItem>
           <Link to="/login">
             <Button
-              color="primary"
               href="#"
               variant="flat"
+              color="primary"
               startContent={<FaUser />}
             >
               Log In
@@ -43,9 +45,9 @@ const NavBar = () => {
         <NavbarItem>
           <Link to="/signup">
             <Button
-              color="secondary"
               href="#"
               variant="flat"
+              color="secondary"
               startContent={<FaUser />}
             >
               Sign Up
