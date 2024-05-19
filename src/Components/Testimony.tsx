@@ -46,7 +46,7 @@ const testimonials = [
 const Testimony = () => {
   const [followed, setFollowed] = useState(testimonials.map(() => false));
 
-  const toggleFollow = (index) => {
+  const toggleFollow = (index: any) => {
     setFollowed((prevFollowed) =>
       prevFollowed.map((isFollowed, i) =>
         i === index ? !isFollowed : isFollowed

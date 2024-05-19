@@ -13,7 +13,7 @@ const SignUp = () => {
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
 
     const user = {
@@ -23,29 +23,10 @@ const SignUp = () => {
       password: password,
     };
 
-    try {
-      console.log("Sending user data to /sign-in:", user);
-      const response = await apiClient.post("/sign-in", user);
-      console.log("Response data:", response.data);
-      alert("Sign up successful!");
-    } catch (error) {
-      if (error.response) {
-        console.error("Response data:", error.response.data);
-        console.error("Response status:", error.response.status);
-        console.error("Response headers:", error.response.headers);
-        alert(
-          `Sign up failed: ${
-            error.response.data.message || error.response.data
-          }`
-        );
-      } else if (error.request) {
-        console.error("Request data:", error.request);
-        alert("Sign up failed: No response from server.");
-      } else {
-        console.error("Error message:", error.message);
-        alert(`Sign up failed: ${error.message}`);
-      }
-    }
+    console.log("Sending user data to /sign-in:", user);
+    const response = await apiClient.post("/sign-in", user);
+    console.log("Response data:", response.data);
+    alert("Sign up successful!");
   };
 
   return (

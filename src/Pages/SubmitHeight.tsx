@@ -1,19 +1,18 @@
 import { Button, Input } from "@nextui-org/react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const LogIn = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [height, setHeight] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [height, setHeight] = useState("");
 
-  const user = {
-    heightName: username,
-    heightEmail: email,
-    height: height,
-    password: password,
-  };
+  // const user = {
+  //   heightName: username,
+  //   heightEmail: email,
+  //   height: height,
+  //   password: password,
+  // };
 
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -34,7 +33,7 @@ const LogIn = () => {
             label="Username"
             placeholder="Enter your username"
             fullWidth
-            value={height}
+            //value={height}
           />
         </div>
         <div className="flex justify-between">
