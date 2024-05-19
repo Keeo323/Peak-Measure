@@ -82,15 +82,12 @@ const NavBar = () => {
               base: "gap-4",
             }}
           >
-            <DropdownItem
-              key="login"
-              className="hover:bg-gray-700 p-2 rounded-md"
-            >
+            <DropdownItem key="login">
               <Link to="/login" className="text-grey w-full block">
                 Log In
               </Link>
             </DropdownItem>
-            <DropdownItem key="signup" className="hover:bg-gray-700 p-2">
+            <DropdownItem key="signup">
               <Link to="/signup" className="text-grey w-full block">
                 Sign Up
               </Link>
