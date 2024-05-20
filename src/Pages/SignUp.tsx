@@ -10,11 +10,15 @@ const SignUp = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    setIsSubmitting(true);
+    setError("");
 
     const user = {
       heightName: username,
@@ -23,10 +27,21 @@ const SignUp = () => {
       password: password,
     };
 
-    console.log("Sending user data to /sign-in:", user);
-    const response = await apiClient.post("/sign-in", user);
-    console.log("Response data:", response.data);
-    alert("Sign up successful!");
+    try {
+      console.log("Sending user data to /sign-in:", user);
+      const response = await apiClient.post("/sign-in", user);
+      console.log("Response data:", response.data);
+      alert("Sign up successful!");
+      setIsSubmitting(false);
+    } catch (error: any) {
+      if (error.response && error.response.status === 409) {
+        setError("User already exists. Please use a different email.");
+      } else {
+        setError("An error occurred. Please try again.");
+      }
+      console.error("Sign up error:", error);
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -36,6 +51,7 @@ const SignUp = () => {
         className="bg-default-100 p-6 rounded-lg shadow-md w-full max-w-md"
       >
         <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+        {error && <div className="text-red-500 mb-4">{error}</div>}
         <div className="mb-4">
           <Input
             type="text"
@@ -81,8 +97,8 @@ const SignUp = () => {
           />
         </div>
         <div className="flex justify-between items-center">
-          <Button type="submit" color="primary">
-            Sign up
+          <Button type="submit" color="primary" disabled={isSubmitting}>
+            {isSubmitting ? "Submitting..." : "Sign up"}
           </Button>
           <div className="flex items-center space-x-2">
             <span className="text-gray-400 text-sm">Already a user?</span>
