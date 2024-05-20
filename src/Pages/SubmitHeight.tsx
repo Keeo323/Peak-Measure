@@ -33,7 +33,7 @@ const SubmitHeight: React.FC = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await apiClient.delete(`/delete/${user.id}`);
+      const response = await apiClient.delete(`/heights/${user.id}`);
       console.log("Response data:", response.data);
       alert("Data deleted successfully!");
       navigate("/home");
